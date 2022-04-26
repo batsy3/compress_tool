@@ -2,15 +2,13 @@ import argparse
 import os, shutil
 import tarfile
 
-	# function to rename file in folder if exists
 def compress(filePath:str):
 		def rename(file):
 			data = os.path.splitext(file)
 			file_key = str(id('_new'))[:4]
-			new_name = data[0]+ file_key +data[1]
+			new_name = data[0]+ file_key + data[1]
 			os.rename(file, new_name)
 			return new_name
-# walk path amd save files and subdirectories in a dictionary
 		filelist= []
 		dirlist = []
 		isdir = os.path.isdir(filePath)
@@ -24,8 +22,7 @@ def compress(filePath:str):
 			'file':filelist,
 			'dirs':dirlist
 			}
-#moves files from dictionary into a folder
-		# create folder to keep files 
+			
 		fileDict = dictionary['file']
 		fileDict.sort()
 		folder_name = 'files'
@@ -70,16 +67,12 @@ class Custom_action(argparse.Action):
 		setattr(namespace, self.dest, ' '.join(values))
 
 		
-# parser = argparse.ArgumentParser()
-# parser.add_argument('-comp', '--compress', help='pass filepath thst you want to compress',action = Custom_action, nargs='+')
-# parser.add_argument( '-decomp', '--decompress', help='pass zip to zip file',action=Custom_action, nargs='+')
-# args = parser.parse_args()
+parser = argparse.ArgumentParser()
+parser.add_argument('-comp', '--compress', help='pass filepath thst you want to compress',action = Custom_action, nargs='+')
+parser.add_argument( '-decomp', '--decompress', help='pass zip to zip file',action=Custom_action, nargs='+')
+args = parser.parse_args()
 
-# # data = os.path.splittext(args.compress)
-# # newpath = 
-# if args.compress:
-# 	compress(args.compress)
-# elif args.decompress:
-# 	decompress(args.decompress)
-
-# C:\Users\user\Downloads\images
+if args.compress:
+	compress(args.compress)
+elif args.decompress:
+	decompress(args.decompress)
