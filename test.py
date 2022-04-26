@@ -5,7 +5,7 @@ import tarfile
 from unittest.mock import MagicMock, patch
 import unittest
 import tempfile
-from scan import compress, decompress
+from main import compress, decompress
 
 
 class Test_compress_tool(unittest.TestCase):
